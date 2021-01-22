@@ -6,7 +6,7 @@ from src.main.tool.DriverFactory import DriverFactory
 
 
 def GrabCardsFromDns():
-    chromedriver_path = "/home/insonusk/Documents/chromedriver_linux64/chromedriver"
+    chromedriver_path = "chromedriver"
     url = "https://www.dns-shop.ru/catalog/17a89aab16404e77/videokarty/"
     driver_f = DriverFactory(chromedriver_path)
     csv_e = CsvEditor(f'DnsList')

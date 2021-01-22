@@ -15,6 +15,8 @@ def GetCardInfoCsvHead() -> [str]:
 
 
 def CardToStringArr(card: CardInfo) -> [str]:
+    import pprint
+    pprint.pprint(vars(card))
     return [card.name, card.price[0], card.price[1], card.release, card.max_watt, card.offer_charge_block, card.url]
 
 

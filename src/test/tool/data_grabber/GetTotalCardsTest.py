@@ -6,7 +6,7 @@ class MyTestCase(unittest.TestCase):
     def test_something(self):
         print("test depends on site")
         url = "https://www.dns-shop.ru/catalog/17a89aab16404e77/videokarty/"
-        page_reader = DriverFactory("/home/insonusk/Documents/chromedriver_linux64/chromedriver")
+        page_reader = DriverFactory("chromedriver")
         result = page_reader.parse(url, get_total_cards)
         self.assertEqual(252,result)
 

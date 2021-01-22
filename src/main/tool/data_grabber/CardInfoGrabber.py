@@ -13,7 +13,8 @@ class CardInfoGrabber:
 
     def get_from_url(self, url: str) -> CardInfo:
         card_info = CardInfo(url)
-        parUrl = url + "characteristics/"
+        print(url)
+        parUrl = url[0] + "characteristics/"
 
         print(f'--- Grab url {parUrl}')
         driver = self.driver_factory.getDriver(parUrl)
@@ -42,7 +43,9 @@ class CardInfoGrabber:
                 cols = characteristic.find_elements_by_css_selector("td")
                 if len(cols) > 2:
                     raise Error("Wrong amount of characteristic columns while parsing")
-
+                card_info.release=0
+                card_info.offer_charge_block=0
+                card_info.max_watt=0
                 if cols[0].text == "Год релиза":
                     card_info.release = int(cols[1].text)
                 if cols[0].text == "Рекомендуемый блок питания":

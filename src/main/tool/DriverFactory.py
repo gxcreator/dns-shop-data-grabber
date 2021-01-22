@@ -10,9 +10,27 @@ class DriverFactory:
 
     def __init__(self, chromedriver_path: str):
         self.__chromedriver_path = chromedriver_path
+        chromeOptions = webdriver.ChromeOptions() 
+        chromeOptions.add_argument("--no-sandbox") 
+        chromeOptions.add_argument("--disable-setuid-sandbox") 
+
+        chromeOptions.add_argument("--remote-debugging-port=0")  # this
+
+        chromeOptions.add_argument("--disable-dev-shm-using") 
+        chromeOptions.add_argument("--disable-gpu") 
+        chromeOptions.add_argument("start-maximized") 
+        chromeOptions.add_argument("disable-infobars") 
+        
+        chromeOptions.add_argument("--no-proxy-server") 
+        chromeOptions.add_argument("--headless") 
+        chromeOptions.add_argument("--log-path=/home/ubuntu/chrdrv.log") 
+        self.__chromedriver_options = chromeOptions
 
     def getDriver(self, url) -> WebDriver:
-        driver = webdriver.Chrome(executable_path=self.__chromedriver_path)
+        driver = webdriver.Chrome(executable_path=self.__chromedriver_path, chrome_options=self.__chromedriver_options, service_args=["--verbose", "--log-path=/home/ubuntu/chrdrv.log"])
+        driver.execute_cdp_cmd('Network.enable', {})
+        driver.execute_cdp_cmd('Network.setCookie', {'domain' : '.dns-shop.ru', 'name': 'city_path', 'value': 'nizhniy-novgorod', 'path' : '/'})
+        #driver.add_cookie()
         driver.get(url)
         return driver
 

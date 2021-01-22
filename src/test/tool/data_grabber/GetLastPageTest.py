@@ -7,7 +7,7 @@ class GetLastPageTest(unittest.TestCase):
     def test_get_correct_last_page(self):
         print("test depends on site")
         url = "https://www.dns-shop.ru/catalog/17a89aab16404e77/videokarty/"
-        page_reader = DriverFactory("/home/insonusk/Documents/chromedriver_linux64/chromedriver")
+        page_reader = DriverFactory("chromedriver")
         result = page_reader.parse(url, get_last_page)
         self.assertEqual(result, 14)
 

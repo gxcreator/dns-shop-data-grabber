@@ -19,12 +19,17 @@ class CardFromListGrabber:
         card_info_grabber = CardInfoGrabber(self.driver_factory)
         for link in links:
             print(f'-- link: {link}')
-            search_res = self.csvEditor.find_url_in_file(url):
+            search_res = self.csvEditor.find_url_in_file(url)
             if not search_res[0]:
                 card_info = card_info_grabber.get_from_url(link)
                 card_info_arr.append(card_info)
-            else if link[1][0] != search_res[1][0] || link[1][1] != search_res[1][1]
-
+            elif link[1][0] != search_res[1][0] or (link[1][1] != search_res[1][1]):
+                pass
+        import pprint
+        
+        for card in card_info_arr:
+            print("====Card array object")
+            pprint.pprint(vars(card))
         if len(card_info_arr) > 0:
             self.csvEditor.add_cards_to_csv(card_info_arr)
         return card_info_arr

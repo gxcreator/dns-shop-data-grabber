@@ -6,7 +6,7 @@ class GetLastPageTest(unittest.TestCase):
     def test_get_amount_of_links(self):
         print("test depends on site")
         url = "https://www.dns-shop.ru/catalog/17a89aab16404e77/videokarty/"
-        page_reader = DriverFactory("/home/insonusk/Documents/chromedriver_linux64/chromedriver")
+        page_reader = DriverFactory("chromedriver")
         result = page_reader.parse(url, get_links_price_from_card_list)
         self.assertEqual(len(result), 18)
 
