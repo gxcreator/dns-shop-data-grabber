@@ -14,7 +14,7 @@ class CardCatalogGrabber:
         cur_list = 1
         filters="f[mx]=2ff-2fi-dbbc-d8xw"
 
-        base_data: BaseData = self.driver_f.parse(url, get_base_data)
+        base_data: BaseData = self.driver_f.parse(url + "?" + filters, get_base_data)
         print(f'Total cards: {base_data.total_cards} on {base_data.total_pages} pages')
 
         list_g = CardFromListGrabber(self.csv, self.driver_f)

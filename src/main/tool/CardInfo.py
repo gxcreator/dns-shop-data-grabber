@@ -12,4 +12,4 @@ class CardInfo:
     url: str
 
     def __init__(self, url: str):
-        self.url = url
+        self.url = url[0]
