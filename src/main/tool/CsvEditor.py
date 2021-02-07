@@ -11,13 +11,13 @@ def GetCurrencyColName() -> str:
     return "Currency"
 
 def GetCardInfoCsvHead() -> [str]:
-    return ["Name", GetPriceColName(), GetCurrencyColName(), "Release", "Max_Watt", "Offered charge power", GetUrlColName()]
+    return ["Name", GetPriceColName(), "Release", "Max_Watt", "Offered charge power", GetUrlColName()]
 
 
 def CardToStringArr(card: CardInfo) -> [str]:
     import pprint
     pprint.pprint(vars(card))
-    return [card.name, card.price[0], card.price[1], card.release, card.max_watt, card.offer_charge_block, card.url]
+    return [card.name, card.price, card.release, card.max_watt, card.offer_charge_block, card.url]
 
 
 class CsvEditor:

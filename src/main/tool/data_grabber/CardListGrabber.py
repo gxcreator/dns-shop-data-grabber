@@ -12,19 +12,30 @@ class CardFromListGrabber:
 
     def grab_url(self, url: str):
         print(f'-- get links from url {url}')
-        links: [(str, (int, str))] = self.driver_factory.parse(url, get_links_price_from_card_list)
+        links: [(str, str, (int, str))] = self.driver_factory.parse(url, get_links_price_from_card_list)
         print(f'-- found {len(links)} links')
 
         card_info_arr: [] = []
-        card_info_grabber = CardInfoGrabber(self.driver_factory)
         for link in links:
-            print(f'-- link: {link}')
-            search_res = self.csvEditor.find_url_in_file(url)
-            if not search_res[0]:
-                card_info = card_info_grabber.get_from_url(link)
-                card_info_arr.append(card_info)
-            elif link[1][0] != search_res[1][0] or (link[1][1] != search_res[1][1]):
-                pass
+            card_info = CardInfo(link[1])
+            card_info.name = link[0]
+            card_info.price = link[2][0]
+            card_info.release = "2020"
+            card_info.max_watt = "0"
+            card_info.offer_charge_block = "0"
+            card_info_arr.append(card_info)
+
+
+        
+        # card_info_grabber = CardInfoGrabber(self.driver_factory)
+        # for link in links:
+        #     print(f'-- link: {link}')
+        #     search_res = self.csvEditor.find_url_in_file(url)
+        #     if not search_res[0]:
+        #         card_info = card_info_grabber.get_from_url(link)
+        #         card_info_arr.append(card_info)
+        #     elif link[1][0] != search_res[1][0] or (link[1][1] != search_res[1][1]):
+        #         pass
         import pprint
         
         for card in card_info_arr:
